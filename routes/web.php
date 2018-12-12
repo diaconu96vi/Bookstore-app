@@ -20,5 +20,6 @@ Route::get('logout', '\App\Http\Controllers\Auth\LoginController@logout');
 
 Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/products', 'HomeController@showProducts');
+Route::get('/search', 'BookController@search');
 
 Route::resource('books', 'BookController');

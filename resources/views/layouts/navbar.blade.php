@@ -24,6 +24,9 @@
                 <li><a href="#">Contact</a></li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
+                <li><form action="{{url('search')}}">
+                        <input type="text" class="form-control" name="searchData" placeholder="Search by title">
+                    </form></li>
                 @if(Auth::check())
                     @if(Auth::user()->admin == 1)
                         <li class="dropdown">

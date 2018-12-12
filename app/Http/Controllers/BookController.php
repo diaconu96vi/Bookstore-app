@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Book;
+use PHPUnit\Framework\Constraint\Count;
 
 class BookController extends Controller
 {
@@ -111,6 +112,15 @@ class BookController extends Controller
         $book->delete();
         // redirect
         return redirect('books');
+    }
+
+    public function search()
+    {
+        $searchData = request('searchData');
+
+        $books = Book::where('title', 'like', '%' . $searchData . "%" )->get();
+
+        return view('products', compact('books'));
     }
 }
 
