@@ -1,45 +1,44 @@
-@extends('layouts.homepage')
+@extends('layouts/homepage')
 
 @section('content')
-
     <div class="container-fluid">
         <!-- <div class="col-md-8"> -->
 
         <div class="box">
             <div class="box-header">
                 <h2>
-                    Edit book: {{ $book->name }} | ID: {{ $book->id }}
+                    Edit Account: {{ $user->name }}
                 </h2>
 
             </div>
             <div class="container">
                 <div id="createTask">
-                    <form action="{{ route('books.update', $book->id)}}" method="post">
+                    <form action="{{ url('/updateUserInfo')}}" method="post">
                         @csrf
                         @method('PUT')
                         <div class="form-group">
-                            <label for="author">Book author</label>
-                            <input type="text" class="form-control" id="author" value="{{$book->author}}" name="author" required>
+                            <label for="userName">User name</label>
+                            <input type="text" class="form-control" id="userName" value="{{$user->name}}" name="name" required>
                         </div>
 
                         <div class="form-group">
-                            <label for="title">Book title</label>
-                            <textarea id="title" class="form-control" name="title" required>{{$book->title}}</textarea>
+                            <label for="email">User email</label>
+                            <input type="email" id="email" class="form-control" value="{{$user->email}}" name="email" required>
                         </div>
                         <div class="form-group">
-                            <label for="publisher">Book publisher</label>
-                            <input id="number" class="form-control" value="{{$book->publisher}}" name="publisher" required>
+                            <label for="password">Current password</label>
+                            <input type="password" id="password" class="form-control" name="password" required>
                         </div>
                         <div class="form-group">
-                            <label for="price">Book price</label>
-                            <input id="text" class="form-control" value="{{$book->price}}" name="price" required>
+                            <label for="newPassword">New Password</label>
+                            <input type="password" id="newPassword" class="form-control" name="newPassword">
                         </div>
                         <div class="form-group">
-                            <label for="picture">Book picture</label>
-                            <input id="text" class="form-control" value="{{$book->picture}}" name="picture" required>
+                            <label for="confirmPassword">Confirm password</label>
+                            <input type="password" id="confirmPassword" class="form-control" name="confirmPassword">
                         </div>
                         <div class="form-group">
-                            <button type="submit" class="btn btn-primary">Edit book</button>
+                            <button type="submit" class="btn btn-primary">Save details</button>
                         </div>
                     </form>
                 </div>
@@ -61,5 +60,6 @@
         </div>
         <!-- /.box -->
     </div>
+@endsection('content')
 
-@endsection
+

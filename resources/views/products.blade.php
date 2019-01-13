@@ -15,7 +15,7 @@
                                 <h4><strong>Publisher:</strong> {{  $book->publisher }}</h4>
                                 <h4><strong>Price:</strong> ${{ $book->price }} </h4>
                             </div>
-                            <div class="panel-footer"><button class="btn btn-primary">Add to cart</button></div>
+                            <div class="panel-footer"><a href="{{url('/addToCart', ['id' => $book->id])}}" class="btn btn-success">Add to cart</a></div>
                         </div>
                     </div>
                 @endforeach

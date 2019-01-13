@@ -19,8 +19,6 @@
             <ul class="nav navbar-nav">
                 <li><a href="/home">Home</a></li>
                 <li><a href="/products">Products</a></li>
-                <li><a href="#">Deals</a></li>
-                <li><a href="#">Stores</a></li>
                 <li><a href="#">Contact</a></li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
@@ -30,20 +28,26 @@
                 @if(Auth::check())
                     @if(Auth::user()->admin == 1)
                         <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">{{ Auth::user()->name }} <span class="caret"></span></a>
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span class="glyphicon glyphicon-user"></span> {{ Auth::user()->name }} <span class="caret"></span></a>
                             <ul class="dropdown-menu">
                                 <li><a href="{{ url('/books') }}">Manage products</a></li>
+                                <li><a href="{{ url('/editUserInfo') }}">Edit account</a></li>
                                 <li><a href="{{ route('logout') }}">Logout</a></li>
                             </ul>
                         </li>
                     @else
-                    <li><a href="#"><span class="glyphicon glyphicon-user"></span> Your Account : {{ Auth::user()->name }}</a></li>
-                    <li><a class="dropdown-item" href="{{ route('logout') }}">Logout</a></li>
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span class="glyphicon glyphicon-user"></span> {{ Auth::user()->name }} <span class="caret"></span></a>
+                            <ul class="dropdown-menu">
+                                <li><a href="{{ url('/editUserInfo') }}">Edit account</a></li>
+                                <li><a class="dropdown-item" href="{{ route('logout') }}">Logout</a></li>
+                            </ul>
+                        </li>
                     @endif
                 @else
                     <li><a href="{{ url('/login') }}"><span class="glyphicon glyphicon-user"></span> Login</a></li>
                 @endif
-                <li><a href="#"><span class="glyphicon glyphicon-shopping-cart"></span> Cart</a></li>
+                <li><a href="{{('/shoppingCart')}}"><span class="glyphicon glyphicon-shopping-cart"></span> Shopping Cart <span class="badge">{{ Session::has('cart') ? Session::get('cart')->totalQty : '' }}</span></a></li>
             </ul>
         </div>
     </div>
